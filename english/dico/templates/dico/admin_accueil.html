@@ -1,0 +1,62 @@
+{% extends "dico/base.html" %}
+{% load static dico_extras humanize %}
+
+{% block content %}
+
+<h2><em>
+{% if ultimate_number == 0 %}
+Your dictionary is empty. </br></br>
+<a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'append_word' %}" ><strong>Add words</strong></a>
+{% else %}
+Your dictionary contains {{ ultimate_number|apnumber }} word{{ ultimate_number|pluralize:",s" }}.
+</em></h2>
+</br>
+</br>
+</br>
+
+<form class="form-inline my-2 my-lg-0">
+	<input 
+	class="form-control mr-sm-2"
+	type="search" placeholder="Search..." 
+	aria-label="Search"
+	name="search"
+	value="{{ search_term }}">
+	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
+
+</br>
+
+<table class="table table-bordered table-striped">
+	<tr class="success">
+		<th></th>
+		<th>Word in english</th>
+		<th>Word in french</th>
+		<th>Comment</th>
+		<th>Name</th>
+	</tr>
+	{% for mot in dico1 %}
+	<tr>
+		<td>{{ forloop.counter }}</td>
+		<td><a class="infos" href="{% url 'info' word=mot.mot number=1 username=mot.username %}">{{ mot.mot }}</a></br>
+			{% for syn in mot.synonym.all %}
+			<a class="infos" href="{% url 'info' word=syn.mot number=2 username=mot.username %}">{{ syn.mot }}</a></br>
+			{% endfor %}</td>
+		<td>{% for trans in mot.translate_word.all %}
+			<a class="infos" href="{% url 'info' word=trans.mot number=3 username=mot.username %}">{{ trans.mot }}</a></br>
+			{% endfor %}</td>
+		<td>
+			{% if mot.comment == "" %}
+				<a class="infos" href="{% url 'info' word=mot.mot number=4 username=mot.username %}">no comment</a>
+			{% else %}
+				<a class="infos" href="{% url 'info' word=mot.mot number=4 username=mot.username %}">{{ mot.comment|safe }}</a>
+			{% endif %}
+		</td>
+		<td>
+			<a class="infos" href="{% url 'admin_affiche_graphe' username=mot.username %}">{{ mot.username }}</a>
+		</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endif %}
+
+{% endblock %}

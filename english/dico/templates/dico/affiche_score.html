@@ -1,0 +1,21 @@
+{% extends "dico/base.html" %}
+{% load static %}
+{% load dico_extras %}
+
+{% block content %}
+<h5><em>
+You got a score of {{ score_f|percent }}. </br>
+{% if ultimate %}
+This is a picture of your evolution. </br>
+</br>
+<img src="{{ point1.image.url }}">
+{% endif %}
+</br>
+</br>
+<a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'accueil' %}" >Home</a>
+</em></h5>
+
+<input type=button value="Print me!" onClick="javascript:window.print()">
+
+
+{% endblock %}	

@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'dico/style_base.css' %}">
+	<title></title>
+</head>
+	<body>
+		{% block nav %}
+		<div class="custom-padding">
+			<nav>
+				<div class="logo">English</div>
+				<ul class="menu-area">
+					<li><a href="{% url 'admin_accueil' %}">Home</a></li>
+					<li><a href="{% url 'account' %}"><h6>{{ request.user|truncatewords:10 }}</h6></a></li>
+				</ul>
+			</nav>
+		</div>
+		{% endblock %}
+	{% block content %}{% endblock %}
+	
+	</body>
+</html>

@@ -1,0 +1,32 @@
+{% extends "dico/base.html" %}
+{% load static %}
+
+{% block nav %}{% endblock %}
+
+{% block content %}
+
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
+{% if number == 1 %}Mot de passe déjà pris. Essayez un autre.{% endif %}
+
+{% if answer == "new" %}Félicitations {{ user.first_name }}, vous venez de créer un compte.
+{% elif answer == "deja" %}Vous aviez déjà un compte Mr {{ last_name }}
+{% elif answer == "super" %}Là vous etes un admin {{ user.username }}
+{% endif %}
+
+<link rel="stylesheet" href="{% static 'dico/style.css' %}" />
+<form method="post">
+	<h1>Connexion</h1>
+	{% csrf_token %}
+	{{ form.as_p }}
+	<div class="button">
+	<button type="submit">Se connecter</button> </div>
+</form>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "dico/base.html" %}
+{% load static %}
+
+{% block nav %}{% endblock %}
+
+{% block content %}
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
+{% if error %}
+<p><strong>Utilisateur inconnu ou mauvais mot de passe.</strong></p>
+{% endif %}
+
+
+<link rel="stylesheet" href="{% static 'dico/style.css' %}" />
+
+<form method="post" class="connect">
+	<h1>Connexion</h1>
+	{% csrf_token %}
+	{{ form.as_p }}
+	<div class="button">
+	<button type="submit">Se connecter</button> </div>
+</form>
+
+<div class="premiereconnexion">
+<p> </br><a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'first_connexion' number=0 %}" >Première connexion</a></p>
+</div>
+{% endblock %}

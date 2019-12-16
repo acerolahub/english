@@ -1,0 +1,13 @@
+{% extends "dico/base.html" %}
+
+{% load static %}
+
+{% block content %}
+{% if schema %}
+<h4><em>You have not yet passed 2 ultimate tests.</em></h4>
+</br>
+<a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'ul_test' %}" ><strong>Ultimate test</strong></a>
+{% else %}
+<img src="{{ point1.image.url }}">
+{% endif %}
+{% endblock %}

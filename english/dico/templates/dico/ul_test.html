@@ -1,0 +1,24 @@
+{% extends "dico/base.html" %}
+{% load dico_extras %}
+{% load humanize %}
+{% block content %}
+
+{% if yo %}
+<h5><em>
+	{% if h == 1 %}
+		You must take the following test: </br></br>
+		<a href="{% url 'test1inter' choice=i|div:TAILLE_LIMIT|add:1 %}">{{ i|div:TAILLE_LIMIT|add:1 }}: Between the {{ i|add:1|ordinal }} et le {{ i|add:TAILLE_LIMIT|ordinal }} word</a></br></br>
+	{% else %}
+		You must take the following tests: </br></br>
+		{% for i in tt %}
+		<a href="{% url 'test1inter' choice=i|div:TAILLE_LIMIT|add:1 %}">{{ i|div:TAILLE_LIMIT|add:1 }}: Between the {{ i|add:1|ordinal }} and the {{ i|add:TAILLE_LIMIT|ordinal }} word</a></br></br>
+		{% endfor %}
+	{% endif %}
+</em></h5>
+{% else %}
+<h4><em>You cannot take this quiz for now.</em></h4>
+</br>
+<a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'append_word' %}" ><strong>Add words</strong></a>
+{% endif %}
+
+{% endblock %}

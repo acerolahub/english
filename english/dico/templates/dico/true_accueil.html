@@ -1,0 +1,20 @@
+{% extends "dico/base.html" %}
+{% load static dico_extras humanize %}
+
+{% block content %}
+
+<div class="presentation">
+<h1>Hi young learner.</h1>
+I think you know why you are on this site. First, I want you to know that even if you get perfect scores here, you will not be able to express yourself in fluent English. This site is just a tool that will help you remember new English words that you discover while having fun. With this tool and with a little effort you will be able to express yourself in English in writing without too much difficulty.
+</br></br>
+<h3>How does this site work ?</h3>
+First of all, you have to add words to your dictionary. It is empty for the moment. Whenever you enter 5 words, you have to take a little test before entering new words. This test is a quiz to check if you have mastered the last words entered. At the end of each test, you receive a score that will decrease each day. You will be invited to retake the tests whose scores will reach a certain threshold. Also, you have the opportunity to test yourself in <strong>"ultimate mode"</strong>. This mode is a quiz that takes into account random words in your dictionary. At the end of each ultimate quiz, a score is awarded to you, a score that will allow you to draw a graph schematizing your evolution. Reassure yourself, this score does not decrease. This site does not handle errors for the moment, so be sure to enter words without errors. Also, after 90 days of inactivity, your account will be deleted.</br>
+It is also possible that a person with a good enough knowledge of English supervises a group of people. For this, it is necessary that this person check the box reserved for administrators, record his name and surname in the <strong>Supervisor</strong> field as follows: <strong>LASTNAME Firsname</strong> as indicated in the first fields. In order for him to play his role of supervisor, his students must fill in the <strong>Supervisor</strong> field on their first connection by putting the last name and first name of the supervisor.</br>
+I hope this tool will improve your performance in writing. If you have any suggestions to improve this tool, we would love to receive them via <strong>send a message to developer</strong> through your profile. Good luck.
+
+
+</br>
+</br>
+</div>
+<a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'connexion' %}" style="font-size: 20px" >Connexion</a>
+{% endblock %}

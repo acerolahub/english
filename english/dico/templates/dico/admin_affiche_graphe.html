@@ -1,0 +1,27 @@
+{% extends "dico/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<h2>{{ username }}</h2> </br>
+Last name: <strong>{{ user.last_name|upper }}</strong> </br> </br>
+First name: <strong>{{ user.first_name|upper }}</strong> </br> </br>
+Email: <strong>{% if user.email == '' %}
+None
+{% else %}
+{{ user.email }}
+{% endif %}</strong> </br></br>
+First connexion: <strong>{{ number.first_connexion }}</strong> </br></br>
+Last connexion: <strong>{{ number.last_connexion }}</strong> </br></br>
+Number of words: <strong>{{ number.number }}</strong> </br> </br>
+
+
+{% if schema %}
+<h4><em>{{ username }} does not have an evolution chart for now.</em></h4>
+</br>
+<a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'admin_accueil' %}" ><strong>Home</strong></a>
+{% else %}
+<img src="{{ point1.image.url }}">
+{% endif %}
+{% endblock %}

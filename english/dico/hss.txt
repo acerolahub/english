@@ -1,0 +1,322 @@
+Williams James : La psychologie est la science de la vie mentale
+
+Le temps de réaction dépend de facon linéaire de l'angle qui sépare les 2 stimulis.
+
+Les sciences cognitives étudient l'objet cerveau à tous ces niveaux et trouve les lois de transitions du fonctionnement du cerveau.
+
+l'IRM et ses capacités
+l'IRM fonctionnelle (acti. du cerveau) mesure indirectement l'état d'acti d'un circuit neuronal en messurant l'afflux de sang oxygéné après une activité du cerveau avec un retard de quelques secondes par rapport à l'activité neronale. (permet de déterminer des paramètres d'organisation des tissus, par mesure des mvts des molécules d'eau: IRM de diffusion).
+
+Monter en champ magnétique pour sonder les échelles spatiales mésoscopiques et microscopiques. (actu 5 ou 7T)
+
+L'IRM ne permet pas mesurer en temps réel, l'activité nerveuse électrique du cerveau mais permet de mesurer n'importe quel point du cerveau en 3D.
+Hémisphère gauche, forme visuelle des mots.
+
+Electro-et magnéo-encéphalographie:
+On n'utilise donc un Electro-et magnéo-encéphalographie 128 électrodes sur tête bébé ou 256 pour un adulte (10^-15 T).
+Sensible au courant engendré dans le tissu nerveu lors d'une activité nerveuse. Mesure des différences de l'ordre du microvolt.
+Le champ magnétique est vraiment misnuscule 10^-15 T. On les msure par des capteurs appelés squids
+Embiguité sur la source spatiale des activités neuronales
+IRM est précise dans l'espace mais pas dans le temps
+EMG l'inverse
+Ces 2 méthodes sont donc complémentaires.
+
+
+
+Mesure des neurones
+Méthodes invasives
+Electrodes directement à la surface du cerveau, on mesure une moyenne locale, le champ de potentiel local.
+Reponses dans la base de fréquence "haut-gamma" (70 ~ 180 Hz):
+-Difficile (électrodes directement sur le cerveau ouvert: électrodes de surface, chirurgie trs lourde)
+-Placer les électrodes directement dans le cortexe (électrodes profondes: moins risqué)
+-Electrodes très fine pour la déplacer près d'un neurone et loin des autres.
+-Electrodes laminaires (mesure à différent niveaux de profondeur, le cerveau)
+On enregistre les décharges neuronales.
+
+Imagerie optique, voire des centaines de neurones simultanément en 2D comme 3D.
+
+NeuroPixels (avec un seul bâton, on touche à une grande quantité de neurones)
+
+Lois en Psychologie
+Le cerveau est un objet biochimique
+La vie mentale est soumise à des lois physiques, chimiques, ou biologiques.
+Dander mesure la vitesse des décisions.
+Corrélation de la vitesse des opérations mentales avec l'anisotropie des connexions mesurés en IRM
+L'organisation physique du cerveau permet de prédit la vitesse à laquelle une information arrive au cerveau. 
+Contraintes biochimi-phisique sur la vitesse de calcul
+
+Lois physiques
+Lois physiques internalisées dans le cerveau au cours de son évolution (Ex: rotation mentale)
+Shepard: Nos images mentales, nos représentaions mentales du monde extérieurs sont structurés en obéissant aux même loi de la physique du monde extérieur.
+L'expérience de pensée suffit parfois à découvrir des lois physiques.
+Contraintes liés à l'évolution du cerveau.
+
+Lois algorithmiques
+Tout système de traitement suit des lois algorithmiques.
+Le cerveau est un dispositif de traitement de l'information
+
+Analyse en science cognitive...
+Les 3 niveaux d'analyse
+Computation (Quel problème le système résout, analyse formelle, mathématique)
+Algorithm (comment le système opère t-il? Quels formats de représentation et quels algo emploie t-il?)
+Implémentation (comment le sys est-il organisé sur le plan matériel? quels sont ses mécanimes neurobiologiques (neurones en jeu...))
+
+C'est très rare que l'analyse commence par l'implémentation et ensuite l'algorithm...
+Idée sur le type d'algo grâce aux idées du deep learning...
+
+Ex: Prise de décision
+Théorie de la détection du signal
+Chaque nombre est représentée par une gaussienne centrée au nombre de référence. Le cerveau tire une valeur. S'il est du côté droit, je répond plus grand, mais si le cerveau à gauche, on a une erreur
+dont le taux d'erreur est une intégrale.
+La probabilité de répondre de facon correcte correspond à l'intégrale d'une gaussienne qui se déplace sur un axe logarithmique.
+Effet distance 10, 12% d'erreur.
+L'effet de distance en comparaison des nombres... le temps de réaction est tjrs plus élevée pour les nombres proches.
+Stochaticité des temps de réaction
+
+Nouveau modèle: A plusieurs échantillons (accumulations d'évidences)Accumuler de manière stochatique des bribes d'info jusqu'à atteindre un certain seuil de significativité.
+On prend plusieurs échantillons et grâce à une marche aléatoire on atteint une décision A ou B. Cela explique pourquoi le temps de réponse est grand pour des nombres proches. Pour des nombres proches, la marche aléatoire évolue très lentement.
+Cet algo par accumulation d'évidence découvert par Turing et nommé par Wald est la manière optimale de décrire une prise de décision.
+P(L|s) / P(R|s) = P(L|s_1, ..., s_n) / p(R|s_1, ..., s_n)/ (si on a une série d'échantillon = p(s1, ..., s_n|L) / p(L).\prod_{i=1}^n p(s_i|L) / ... (règle de Bayes)
+v(t) = log (p(L|s)/p(R|s))
+Lorsqu'on prend n'importe quel décision, on est lent et stochastique.
+
+Analyse psychologique
+p_i = 1/(1+exp^{-2\beta \u_i}) proba de se tromper (fct sigmoide similaire à l'intégrale d'une gaussienne)
+t_i = B/|u_i| tanh(B|u_i|)
+
+
+Computationnelle: L'algo de Wald est la meilleure solution possible)
+Psycjholo: on arrive à rendre compte des temps de réactions: l'algo correspond au comptotement des sujets:
+Implémentaion: est-ce qu'il y a des neurones qui accumlent l'évidence et qui font une marche aléatoire.
+
+Solution
+Computation (Pb: catégoriser un stimuli S: C1 ou C2? Solution Proba(C1|S)) > P(C2|S)
+Algo: Algo de Wold: Accumulation d'évidence pas à pas jusqu'à atteindre un seuil, représentation de l'évidence et des proba.
+Implémentation: réseau de neurones récurrent à 2 attracteurs et connexions à récepteur NMDA du glutamate.
+
+
+Taux d'erreur = intégrale de la gaussienne. Cette gaussienne peut etre +- éloignée du critère de décision
+
+2 sortes de neurones: 
+-donnent l'évidence (répondent à un certain nombre, courbe d''accourd autour d"un paramètre) dans les aires sensorielles
+-accumulent l'évidence 'somme des échantillons, augment leur activité progressivement en fonction de la quantité d'information recu dans les aires associés à la prise de décision contexte préfontale et pariétale
+
+p_i = 1/(1+e^(-2theta))
+temps de réponse = B/|\mu_i|*tanh(B|\mu_i|)
+
+
+
+Cours2
+Décomposition d'une tâche cognitive
+-Reconnaissance des symboles (effet de notation "particulière des nombres")
+Apprition d'un dipole électrique vers 110-170 ms (EMG) et activation supplémentaire pour les chiffres arabes dans les région qui correspondent aux aires visuels du cerveau (IRM)
+Possiblité d'isoler les changements d'activités dans les aires visuels du cerveau   
+-Conversion en quantité et décision (effet distance)
+190-300 ms (dipole dans le contexe pariétale) (EMG) et l'IRM trouve des activations qui s'effectuent dans le cortexe pariétale. Plus les nombres sont proches, plus il y a d'activations
+-Programmation de la réponse (effet de latéralisation et de complexité motrice)
+250-450 ms... Si on modifie la difficulté de la réponse, activations dans le cortexe moteur.
+
+une décision est une chaine d'étape que l'on peut décomposer comme précéddemment
+
+Modèle des facteurs additifs
+La méthodes des facteurs additifs fait des prédictions juste sur la base des temps de réponse.
+- Additivité des trois effets sur les moyennes des temps de réponse.
+(Si on allonge le temps de la perception, la distance entre les nombres ou la réponse motrice, le temps de réponse final augmente)
+
+- Effets sur la variabilité des temps de réponse
+Les temps de réponse sont variable à cause de l'étape centrale (décision) car elle est stochastique. 
+
+
+Collisions mentales dans l'exécution simultanée de 2 tâches
+La période psychologique réfractaire: le temps de réponse de la 1ere tâche est constant et la 2e tâche est considérablement ralenti si l'on approche la présentation du second stimuli du premier stimuli.
+Ce qui empêche les 2 tâches de s'exécuter simultanément est l'étape de décision.
+Chaque décision est une inférence(accumulation d'évidence)
+
+Le goulot d'étranglement central de Pashler
+-Les deux tâches ne sont pas exécutées en parallèle, mais partiellement en série.
+-Seule une étape centrale est ralentie durant la collision
+-La durée de l'étape P2 peu ere absorbée durant le temps d'attente
+Si je ralentie C2, on ralentie le temps de réaction mais si on ralentie P2 ou M2, elles vont pouvoir s'exécuter en parralèle avec les autres.
+P pour perception
+C pour décision
+M motrice
+2 prédictions
+Le temps d'attente dépend de la durée de réponse 1
+La variabilité du temps de réponse 2 intègre, en partie, la variance du temps de réponse 1. Donc si le temps 1 est ralenti alors le temps 2 est aussi ralenti.
+Corrélation donc entre les 2 stimuli seulement si le temps d'attente entre les 2 stimuli est long, sinon les 2 décisions deviennent indépendantes.
+
+
+Chaque décision est une inférence
+La perception est également une inférence
+Ex: Les six sphères dont 5 bombés et une en creux ou plutôt l'inverse lorsqu'on retourne l'image.
+Le cerveau fait des hypothèses, prend en compte des apprio, des données et les combine.
+
+Le cerveau recoit des infos sensorielles, et en infère l'état le plus probable du monde. Selon Helmotz, les entrées sensorielles (perception) se combinent avec les attentes pour engendrer l'expérience consciente.
+L'analyse Bayésienne constitue un modèle normatif de cette idée.
+
+Raisonnement probabiliste "en avant" (classique) ou "en arrière" (bayésien)
+P(H|D) = p(D|H)p(H)
+H: hypothèse
+D: donnée
+p(H) proba à priori de H (elle peut résulter d'expériences antérieures)
+p(H|D) proba a prosteriori de H (pas nécessairement au sens temporel, mais au sens de l déduction logique, après avoir observé D)
+p(D|H) craissemblance de H comme fonction de H
+Ex: Qualitatif de raisonnement Bayésien
+Un mec tousse (Donnée)
+Hypothèses
+h1- il a la grippe
+h2- cancer du poumon
+h3- gastro-entérite
+h1 est l'hypothèse la plus probable a posteriori
+Nous utilisons un critère MAP (maximum a posteriori) et non un critère de maximum de vraissemblance car la proba a priori ne peut pas être négligé
+
+Pourquoi le cadre Bayésien s'applique-til nien à la perception ?
+Parcequ'elle est tout le temps ambigüe
+Les entrées sensoielles sont tjrs """
+Ex: Un cercle se projette comme une ellispe sur la rétine
+Notre système doit donc sélectionner, parmi une infinté de solutions possinbles, celle la plus plaussible.
+La théorie bayesienne p(O|S) est le produit des proba d'appriori sur le monde extérieur p(O) et de la vraissemblance p(S|O)
+
+Autre exemple: l'illusion du masque en creux
+Le système visuel a eu énorménement de visages en relief donc on a plus d'apprio sur les visages en reliefs que sur le visages en creux. Donc quand on voit un visage en relief ou en creu, le cerveau ajoute des infos pour dire que c'est une image en relief
+
+Autre exemple: la perception de la taille
+La taille perçue dépend de la projection rétinienne, mais aussi du contexe
+Les illusions visuelles ne sont pas des preuves d'irrationnalité du cerveau mais plutôt de la rationnalité du ce dernier.
+Pourquoi elles marchent?
+Toutes ces illusions sont des situations où même si on donne peu d'informations au cerveau pour évoquer un contexte de 3D, le cerveau récupère les appriori des scenes en 3D et change la perception de la taille.
+Pourquoi une barre verrticale est jugée > barre horizontale
+On compare une barre horizontale à plusieurs barre forment un angle avec la barre horizontale. 
+La mesure obtenue: l'illusion augmente quand l'angle ougment mais il y a un trou au niveau de 90° (décroissance et minimum local). Après 90 la courbe croit et décroit ensuite.
+D'où vient cette illusion?
+Dans le monde réek, scène de jardin, on place une barre horizontale et une barre verticale. la barre h a tendance < verticale car la barre verticale combine un point relataivement devant qu'un poit derrieire. Le cerveau s'est habitué à la 3D, calcuer un apprio (lorsqu'elle a une dimension rétienne, elle a plus de chance de correspondre a une grande distance dans le monde extérieur lorsque lle ewt vertivale qu'elle est horizontale) La mesure en télémétrie laser fourni les memes résultats.
+
+L'intégration Bayésienne de plusieurs indices sensoriels
+Ex: on regarde un objet attrapé (infos visuelles et tactiles)
+ANalyse rationnelle de cette situation (comment concevoir une machine qui résout ce problième)
+d'après la théorie bayésienne
+p(w|t,v) = p(t,v|w)p(w)/p(t,v) = p(t|w)p(v|w)p(w)/p(t,v) = p(t|w)p(v|w)p(w)
+w: largeur
+t: toucher
+v: visuel
+p(w|t,v): proba a posteriori
+Le produit de 2 gaussiennes est une nouvelle gaussienne
+le principe du maximum de vraiss. prédit que:
+-la perception est une moyenne pondérée des valeurs sugérés par chaque indice
+-les pondérations sont fonction de la fiabilité des indices (l'inverse de la variance)
+-la fiabilité totale est les somme des fiabilités
+Donc si le toucher et le visuel est représenté par 2 gaussiennes, le produit est une gausienne centrée sur la moyenne pondérée et la fiabilité...
+
+-la taille percue (PSE, point of subjective equality) se déplace en direction de celle sugéerée par la vision. Si les données visuelles sont très peu fiables on utilise les données tactitles, sinon on est entre les 2
+-en proportion directe de la fiabilité des indices visuels
+-avec un niveau de bruit(JND) qui décroit lorsque la biabilité augmente (plus il y ade bruits visuel, plus les données s'étalent en direction des données tactiles)
+la courbe devient plus plate (il y a beaucoup de bruit)
+(la précision de la réponse (JND=JUST NOTICEABLE DIFFERENCE) EST QUANTITATIVEMENT CONFORME AUX PRÉDICTIONS DE LA THÉORIE BAYESIENNE.
+On peut donc présuire comment la moyene et la variance se déplace en fonct de la théo. Bayésienne.
+
+Autre exemple: observation empirique: quand on conduit dans le brouillard, on va plus vite? Pourquoi?
+Lorsque les données sont bruitées on fait recours aux à priori donc, on sous-estime la vitesse parce que à priori on bouge pas.
+L'illusion visuelle s'explique par l'aspect rationnelle du cerveau.
+
+L'apprentissage: un autre domaine d'appli de la theo. Bayésienne
+-Comment nos esprits parviennent-ils à inférer autant à partir de si peu ?
+C'est le scandale de l'induction. Les enfants et les adultesréalisent quotidiennement des inférences très sophistiquées alors qu'il parait évident qu'ils n'ont pas assez de données.
+Ex: tout le monde sait que "corrélation n'est pas causation" et pourtant les humains infèrent régulierement des relations causales sur la base de quelques données qui ne suffiraient même pas à calculer un coefficient de corrélation.
+
+Autre exemple: l'apprentissage du langage
+"Chomsky" et la pauvreté du stimuli. Quand on montre un lapin à un enfant et qu'on lui dit lapin (trop peu d'infos), comment l'enfant arrive à la conclusion que le momt lapin ne réferre pas uniquement à la couleur blanche ou aux oreilles. Le cerveau ajoute donc des infos. 
+
+Autre exemple: apprentissage tjrs
+On a en tête un arbre d'hypothèses
+- si les hypo sur le sens des mots sont des branches d'un arbre des catégories de sens envisageables
+- alors la règle bayésienne va automatiquement choisir la catégoie la plus petite, compatible avec les observations.
+Supposons que toutew le whypo aient la même proba a priori
+p(H|D_1, D_2, D_3) est proportionnelle au produit des vraissemblances p(D_i|H) (en supposant que les observations sont conditionnellement indépendantes)
+Les hypo H qui correspondent à des branches "trop petites" sont immédiatement éliminées: leur vraissemblance est nulle pour au moins l'un des mts p(D_i|H) =0
+Pour les autres catégories p(D_i|H) =1/n où n est le nombres d'élements de la catégories
+Le mécanisme de BAyes attribue automatiquement une vraissemblance plus faible aux catégories les plus grandes.
+C'est l'une des versions du rasoir d'Ockam.
+Une plurlarité ne doit pas être posée sans nécessité.
+"Les entitées ne doivent pas êre multipliéees au delà du nécessaire"
+Toutes choses égales par ailleurs, les explications les plus imples doivent être préférés aux plus complexes.
+L'enfant regarde plus longtemps l'événement impossible.
+
+Le modèle bayésien dit que le cerveau contient des bails innés (espace d'hypothèse) ET acquis (proba des différentes hypotheses et vraismmenblance des données étant donnée chaque hypothèse)
+
+L'inférence bayésienne est une théorie mathématiques: c'est la seule extension de la logique classique au raisonnement plausible en présence d'incertitudes.
+Nos décisions rélflètent un calcul bayésie des proba (combiné avec une estimation des conséquences de nos choix): p(reponse|stimulus)
+L'inférence bayésienne rend bien compte des processus de perception: étant donné des entrées ambigües, notre cerveau en reconstruit l'interprétation la plus probable: p(objjet|entrées sensorielles)
+La théorie bayésienne explique un bon nombre d'illusions visuelles (rôle de l'a priori) et également la manière dont nous fusionnons des indices multiples.
+Le raisonnemen bayé. fournit un puissant algo d'apprentissage de régularités statistiques.
+Le bébé semble dôté, dès la naissance, de compétences pour le raisonnement probabiliste.
+L'inférence peut être hierrarchique et donner rapidemnt accès à des connaissances abstraites (ex de l'papprentissage des mots).
+L'architecture du cortex pouurait avoir évolué pour réaliser, à très grande vitesse et de façon massivement parallèle, des inférences bayésiennes.
+
+
+
+Cours3
+L'analyse contemporaine du problème de la conscience
+Le cerveau organe matériel est formé de 10^10 neurones et 10^14 synapses.
+
+Peut-il y avoir une science de la conscience ?
+1er obstacle: La conscience est un phénomène subjectif, propre à chacun d'entre nous. Je suis le seul à savoir si je pense à quelque chose or l'analyse scientifique se base sur des phénomènes objectifs.
+2e obstacle: L'esprit n'échappe-t-il pas aux limites du corps, dans le rêve ou après la mort ?
+Le dualisme gouverne tjrs nos intuitions sur la nature de la pensée.
+"Beaucoup d'aspects du traitement de notre esprit vient de l'organisation du corps."
+Descartes est dualiste parce qu'il pensait que les animaux étaient des automates mais lorsqu'il regardait les humins, il ne voyait pas comment les automates pouvaient imiter les humains.
+
+Un pb philosophique devient un défi expérimental
+-Au 20e siècle, l'émergence d'une science de l'informatique (Turing, Shanon, von Neuman...) a permis de repousser les limites des machines.
+-Nous avons commencer
+
+Premier ingrédient: L'invisibilité à volonté
+Le cerveau oublie volontairement les choses absolument statique et qui ne peuvent pas être du à des entrées visuelles dans le monde extérieur qui bougent en permanence.
+
+Illusions visuelles
+Le système visuel opère selon des processus d'inférence inconsciente"
+(La perception consciente)On ne voit que le résultat d'un long calcul. La conscience est donc en retard sur le monde extérieur.
+Le système visuelle soustraie l'ombre avant de nous donner l'objet.
+
+Le traitement perceptif initiale peut-être très complexe, mais non-conscient
+La perception consciente corrèle avec une vague d'activité neuronale tardive et durable, qui intègre les entrées sensorielles dans un réseau global
+Notre conscience est en retard sur le monde extérieur.
+
+Les ingrédients essentiels de la science de la conscience
+1. Des paradigmes expérimentaux permettent de manipuler la conscience au labo
+Rivalité binoculaire: lunette avec 2 filtres projettant 2 films différents: phénomène subkjectif avec stimuli constant
+Masquage: on affiche une image pendant 250ms et juste après on affiche une image
+Clignotement de l'attention: on n'arrive pas à voir de 2e lettre parmi une liste d'image de chiffres.
+2. Les recherches se focalisent sur l'accès à la conscience d'une information sensorielle élémentaire
+3. L'introspection est au coeur de ce programme. C'est elle qui définit le phénomène même que l'on cherche à étudier (subjectivité)
+4. des mesures objectives de l'activité cérébrale
+Effet d'amorcage inconscient indépendant de la casse
+Le temps de réaction est nettement plus rapide que lorsqu'on traite des mots différents.
+Pendant ce temps, on constate que des régions du cerveau dont l'activité ont été modifié par une amorce subliminal. Le cerveau travil moins lorsqu'il y a 2 fois le même mois. (effet de répétiion suppresssion indépendant de la casse)
+On a à l'arrière du cerveau, apparition ... effet de répétion physique.
+
+Le sens d'un mot peut être traitée non-consciemment.
+
+Le cortexe fait des opérations conscientes. Mais aujourd'hui on voit que l'immense majorité des opérations du cerveau est non-consciente.
+
+Les mécanismes de la prise de conscience
+La prise de conscience multiplie par 10 de la quantité d'activité du cerveau.
+
+La perte de conscience due au masquage
+
+C'est après 200ms que l'on arrive à voir des évémnement neuronaux qui corèlent avec des événements subjectifs.
+
+Il y explosion d'activité dans une étape tardive quand les stimuli franchissent le seuil de conscience.
+L'émisphère gauche traite le langage.
+La statbilité de l'info est caractéristique de la prise de conscience.
+Nous la saisissons et la rendons stable dans le cerveau.
+La conscience est le résultat du fracnhissement du seuil pour la prise de décision (cours 1)
+Certains neurones ne répondent qu'à des noms de personnes ou des images uniquement.
+On a un correla au niveau d'un neurone unique de la perception subj. à stimuli constant. 
+
+Les régions de haut niveau associatiove qui ont les neurones qui correlent avec la perception sugestive.
+Etre conscient c'est avoir pris une info du monde extérieur, l'avoir ramené dans cette espace où elle peut être envoyée aux processeurs verbaux.
+Les essais vu conduisent à un coup de projecteur en retour vers les aires visuelles où le stimuli a été au départ.
+Les bases neurales du seuil de prise de conscience correspondent à cet embrasement dans le cortexe préfrontale.
+
+On fait mieux que le hasard. Il y a un effet subliminal jusqu'au niveau du clic.
+L'erreur n'est détecté que dans les essais où on dit qu'on a vu le stimulis.

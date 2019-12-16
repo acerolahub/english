@@ -1,0 +1,81 @@
+{% extends "dico/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<h1>{{ mot.mot }}</h1> </br> </br>
+
+<table>
+	<tr>
+		<th>Word in english</th>
+		<th>Word in french</th>
+		<th>Comment</th>
+		<th>Date of first publication</th>
+		{% if a.groupe_admin %}
+		<th>Name</th>
+		{% endif %}
+	</tr>
+	<tr>
+		<td><a class="infos" href="{% url 'info' word=mot.mot number=1 username=mot.username %}">{{ mot.mot }}</a></br>
+			{% for syn in mot.synonym.all %}
+			<a class="infos" href="{% url 'info' word=syn.mot number=2 username=mot.username %}">{{ syn.mot }}</a></br>
+			{% endfor %}</td>
+		<td>{% for trans in mot.translate_word.all %}
+			<a class="infos" href="{% url 'info' word=trans.mot number=3 username=mot.username %}">{{ trans.mot }}</a></br>
+			{% endfor %}</td>
+		<td>
+			{% if mot.comment == "" %}
+				<a class="infos" href="{% url 'info' word=mot.mot number=4 username=mot.username %}">no comment</a>
+			{% else %}
+				<a class="infos" href="{% url 'info' word=mot.mot number=4 username=mot.username %}">{{ mot.comment|safe }}</a>
+			{% endif %}</td>
+		<td>
+			{{ mot.date }}</td>
+		{% if a.groupe_admin %}
+		<td>{{ mot.username }}</td>
+		{% endif %}
+	</tr>
+</table>
+
+</br></br>
+
+{% if number_action == 1 %}
+	Enter the new word or comment
+	<form method="post">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<div class="button">
+		<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Change</button> </div>
+	</form>
+
+	</br>
+	{% if change %}
+		Change made successfully.</br>
+		{% if a.groupe_admin %}
+		<a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'admin_accueil' %}">Home</a>
+		{% else %}
+		<a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'accueil' %}">Home</a>
+		{% endif %}
+	{% endif %}
+{% elif number_action == 0 %}
+	{% if number == 2 %}
+		Deletion completed successfully.
+	{% elif number == 3 %}
+		{% if delete == True %}
+		Deletion completed successfully.
+		{% elif delete == False %}
+		You can not delete this word. You can only change it ...
+		{% endif %}
+	{% elif number == 4 %}
+	Deletion completed successfully.
+	{% endif %}
+</br>
+		{% if a.groupe_admin %}
+		<a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'admin_accueil' %}">Home</a>
+		{% else %}
+		<a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'accueil' %}">Home</a>
+		{% endif %}
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,29 @@
+form
+{
+	display: flex;
+	flex-direction: column;
+	margin: auto;               /* pour centrer sur la longueur de la page */
+	width: 500px;
+	padding: 1em;               /* marge entre le texte et le cadre */
+	border: 1px solid #CCC;     /* affiche la bordure du tableau */
+	border-radius: 1em;         /* arrondis les angles */
+}
+
+label
+{
+	/* Pour être sûrs que toutes les étiquettes ont même taille et sont 
+	correctement alignés */
+    display: inline-block;
+    width: 200px;
+    text-align: center;
+}
+
+.button
+{
+	padding-left: 205px;
+}
+
+.premiereconnexion
+{
+	text-align: center;
+}

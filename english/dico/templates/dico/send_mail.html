@@ -1,0 +1,22 @@
+{% extends "dico/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<h2>{{ request.user }}</h2> </br>
+{% if mmail %}
+Your email has been sent.
+{% else %}
+<h4>
+Write your message, suggestion or advice here. </br> </h4>
+Please, write or register your email if you want an answer.
+
+{% endif %}
+<form method="post">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<div class="button">
+	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Send</button> </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'dico/style_base.css' %}">
+	<title></title>
+</head>
+	<body>
+		{% block nav %}
+		<div class="custom-padding">
+			<nav>
+				<div class="logo">English</div>
+				<ul class="menu-area">
+					{% if a.groupe_admin %}
+					<li><a href="{% url 'admin_accueil' %}">Home</a></li>
+					<li><a href="{% url 'account' %}"><h6>{{ request.user|truncatewords:10 }}</h6></a></li>
+					{% else %}
+					<li><a href="{% url 'accueil' %}">Home</a></li>
+					<li><a href="{% url 'append_word' %}">Add words</a></li>
+					<li><a href="{% url 'test' %}">Test</a></li>
+					<li><a href="{% url 'ul_test' %}">Ultimate Test</a></li>
+					<li><a href="{% url 'affiche_graphe' %}">Evolution</a></li>
+					<li><a href="{% url 'account' %}"><h6>{{ request.user|truncatewords:10 }}</h6></a></li>
+					{% endif %}
+				</ul>
+			</nav>
+		</div>
+		{% endblock %}
+	{% block content %}{% endblock %}
+
+	</body>
+</html>

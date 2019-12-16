@@ -1,0 +1,34 @@
+{% extends "dico/base.html" %}
+{% load static %}
+{% load dico_extras %}
+
+{% block content %}
+
+</br>
+</br>
+</br>
+
+
+{% if error %}
+<p><strong>Wrong answer. {{ 3|sub:k }} trial{{ 3|sub:k|pluralize:",s" }} left.</strong></p>
+{% endif %}
+
+
+
+{% if answer %}
+The solution was {{ solution }}.
+{% endif %}
+
+<link rel="stylesheet" href="{% static 'dico/style.css' %}" />
+<form method="post" class="connect">
+	Enter the translation of </br>
+	<h1>{{ mot1 }}</h1>
+	</br>
+	{% csrf_token %}
+	{{ form.as_p }}
+	<div class="button">
+	<button type="submit">Submit</button> </div>
+</form>
+
+
+{% endblock %}

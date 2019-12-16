@@ -1,0 +1,41 @@
+{% extends "dico/base.html" %}
+{% load static %}
+{% load humanize %}
+{% load dico_extras %}
+
+{% block content %}
+
+<h5><em>
+{% if num == 1 %}
+	You cannot test yourself with the last word entered. You will have to register {{ TAILLE_LIMIT|add:-1 }} new words.
+	
+	{% elif num != 0 %}
+	
+	You cannot test yourself with the  {{ number|mod:TAILLE_LIMIT }} last word{{ number|mod:TAILLE_LIMIT|pluralize:",s" }} entered. You will have to register {{ TAILLE_LIMIT|sub:num }} word{{ TAILLE_LIMIT|sub:num|pluralize:",s" }} again.
+
+</br> </em> </br>
+<a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'append_word' %}" ><strong>Add words</strong></a>
+
+	{% elif number == 0 %}
+	Your dictionary is empty.
+
+{% endif %}
+ 
+
+{% if number >= TAILLE_LIMIT %}
+</br></br>
+Your dictionary contains {{ number|apnumber }} word{{ number|pluralize:",s" }}.
+</br></br>
+	{% if number >= TAILLE_LIMIT|mul:2 %}
+	Then, You can test: </br></br>
+	{% for n in number|diveuclid:TAILLE_LIMIT|range_django %}
+	<a href="{% url 'test1inter' choice=n|add:1 %}">{{ n|add:1 }}: Between the {{ TAILLE_LIMIT|mul:n|add:1|ordinal }} and the {{ n|add:1|mul:TAILLE_LIMIT|ordinal }} word</a></br></br>
+	{% endfor %}
+{% else %}
+	{% for n in number|diveuclid:TAILLE_LIMIT|range_django %}
+	<a href="{% url 'test1inter' choice=n|add:1 %}">{{ n|add:1 }}: Between the {{ TAILLE_LIMIT|mul:n|add:1|ordinal }} and the {{ n|add:1|mul:TAILLE_LIMIT|ordinal }} word</a></br></br>
+	{% endfor %}
+{% endif %}
+</em></h5>
+{% endif %}
+{% endblock %}

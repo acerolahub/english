@@ -1,0 +1,53 @@
+{% extends "dico/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<h1>{{ word }}</h1> </br> </br>
+
+<table>
+	<tr>
+		<th>Word in english</th>
+		<th>Word in french</th>
+		<th>Comment</th>
+		<th>Date of first publication</th>
+		{% if a.groupe_admin %}
+		<th>Name</th>
+		{% endif %}
+	</tr>
+	<tr>
+		<td><a class="infos" href="{% url 'info' word=mot.mot number=1 username=mot.username %}">{{ mot.mot }}</a></br>
+			{% for syn in mot.synonym.all %}
+			<a class="infos" href="{% url 'info' word=syn.mot number=2 username=mot.username %}">{{ syn.mot }}</a></br>
+			{% endfor %}</td>
+		<td>{% for trans in mot.translate_word.all %}
+			<a class="infos" href="{% url 'info' word=trans.mot number=3 username=mot.username %}">{{ trans.mot }}</a></br>
+			{% endfor %}</td>
+		<td>
+			{% if mot.comment == "" %}
+				<a class="infos" href="{% url 'info' word=mot.mot number=4 username=mot.username %}">no comment</a>
+			{% else %}
+				<a class="infos" href="{% url 'info' word=mot.mot number=4 username=mot.username %}">{{ mot.comment|safe }}</a>
+			{% endif %}</td>
+		<td>
+			{{ mot.date }}</td>
+		{% if a.groupe_admin %}
+		<td>{{ mot.username }}</td>
+		{% endif %}
+	</tr>
+</table>
+
+</br></br>
+
+{% if number == 1 %}
+You cannot delete this word, you can only change it. 
+</br></br>
+<a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'action' word=word number=number number_action=1 username=mot.username %}" class="button"><strong>Change</strong></a>
+{% else %}
+Which operation want you to perform ? </br> </br> </br>
+<div class="buttonlink">
+<a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'action' word=word number=number number_action=0 username=mot.username %}" class="button"><strong>Delete</strong></a>  or  	
+<a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'action' word=word number=number number_action=1 username=mot.username %}" class="button"><strong>Change</strong></a>
+</div>
+{% endif %}
+{% endblock %}

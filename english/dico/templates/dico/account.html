@@ -1,0 +1,26 @@
+{% extends "dico/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<h2>{{ request.user }}</h2> </br>
+Last name: <strong>{{ user.last_name|upper }}</strong> </br> </br>
+First name: <strong>{{ user.first_name|upper }}</strong> </br> </br>
+Email: <strong>{% if user.email == '' %}
+None
+{% else %}
+{{ user.email }}
+{% endif %}</strong> </br></br>
+First connexion: <strong>{{ a.first_connexion }}</strong> </br></br>
+
+Number of words: <strong>{{ a.number }}</strong> </br> </br>
+
+Supervisor: <strong>{% if a.prof == '' %}
+None
+{% else %}
+{{ a.prof }}
+{% endif %}</strong> </br> </br>
+
+Do you want to <strong><a href="{% url 'profil' number=0 %}">edit your profile</a></strong>, <strong><a href="{% url 'deconnexion' %}">sign out</a></strong> or <strong><a href="{% url 'send_mail' %}">send a message to the developper</a></strong> ? </br>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "dico/base.html" %}
+{% load static %}
+{% load humanize %}
+{% load dico_extras %}
+
+{% block content %}
+
+{% if number_user.number == 0 %}
+Your dictionary is empty.
+{% else %}
+Your dictionary contains {{ number_user.number|apnumber }} word{{ number_user.number|pluralize:",s" }}.
+{% endif %}
+</br>
+
+{% if dico_state == 2 %}
+{{ word1 }} is already present in your dictionary.
+{% elif dico_state == 3 %}
+{{ word2 }} is already present in your dictionary.
+{% elif dico_state == 4 %}
+These two words are already present in your dictionary.
+{% endif %}
+</br>
+
+<link rel="stylesheet" href="{% static 'dico/style.css' %}" />
+<form method="post" class="connect">
+	<h1>Enter your words</h1>
+	{% csrf_token %}
+	{{ form.as_p }}
+	<div class="button">
+	<button type="submit">Add new words</button> </div>
+</form>
+</br>
+<a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'accueil' %}" ><strong>Home</strong></a>
+{% endblock %}

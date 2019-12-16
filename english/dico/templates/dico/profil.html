@@ -1,0 +1,64 @@
+{% extends "dico/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'dico/style.css' %}" />
+
+<h2>{{ request.user }}</h2> </br>
+{% if number == 0 %}
+<a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'profil' number=1 %}">Last name and First_name</a> </br></br><strong>{{ user.username }}</strong> </br></br>
+
+<a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'profil' number=2 %}">Email</a> </br></br><strong>{% if user.email == '' %}
+None
+{% else %}
+{{ user.email }}
+{% endif %}</strong> </br> </br>
+
+<a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'profil' number=4 %}">Supervisor</a> </br></br><strong>{% if a.prof == '' %}
+None
+{% else %}
+{{ a.prof }}
+{% endif %}</strong> </br> </br>
+
+</br>
+
+<a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'profil' number=3 %}">Password</a> </br>
+
+{% else %}
+{% if change %}
+Change made successfully </br>
+{% else %}
+{% endif %}
+
+{% if number == 1 or number == 11 %}
+{% if number == 11 %}
+Change your new last name or first name. </br>
+Username already taken. </br>
+
+{% endif %}
+Your choice for <strong>last name</strong> and <strong>first_name</strong> was <strong>{{ user.username }}</strong> </br></br>
+
+{% elif number == 2 %}
+Your choice for <strong>email</strong> was <strong>{% if user.email == '' %}
+None
+{% else %}
+{{ user.email }}{% endif %}</strong> </br></br>
+Type your new email or nothing if you want
+
+{% elif number == 3 or number == 33 or number == 34 %}
+{% if number == 33 %}Password already taken.</br>{% elif number == 34 %}Wrong password. Try again.</br>{% endif %}
+
+Type your new password
+{% endif %}
+
+<form method="post" class="connect">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<div class="button">
+	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Change</button> </div>
+</form>
+
+{% endif %}
+
+{% endblock %}
